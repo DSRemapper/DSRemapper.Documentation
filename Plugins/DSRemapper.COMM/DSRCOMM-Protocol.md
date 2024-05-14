@@ -8,7 +8,7 @@ _Note: This protocol is based on how HID (Human Interface Device) communication 
 
 ## Communication structure
 
-In any case, DSRemapper will iniciate or solicitate the communication sending a code. But there is 2 types of communication, DSRemapper sending data to the Device and the Device sending data to DSRemapper
+In any case, DSRemapper will iniciate or solicitate the communication sending a code. But there is 2 types of communication, DSRemapper sending data to the Device and the Device sending data to DSRemapper.
 
 ### DSRemapper to Device Data
 |        | Code       | Structure   | ACK    |
@@ -31,11 +31,37 @@ In any case, DSRemapper will iniciate or solicitate the communication sending a 
 
 ### 0x00 - Info Report
 Length: 32 bytes  
-Description: Contains any information related to the connected device (in case of accelerometer or gyroscope, it's scale)
+Description: Contains any information related to the connected device (in case of accelerometer or gyroscope, it's scale).
 
 ```c++
 struct InfoReport{
-  short AccelerometerScale;
-  short GyroscopeScale;
+  unsigned short AccelerometerScale;
+  unsigned short GyroscopeScale;
 }
 ```
+
+### 0x01 - Default Input Status
+Length: 64 bytes  
+Description: Contains the data about the Device current status.
+
+```c++
+struct InputReport{
+  
+}
+```
+
+### 0x02 - Default Output Status
+Length: 32 bytes + ACK (1 byte)  
+Description: Contains the data to be send to the Device.
+
+```c++
+struct OutputReport{
+  
+}
+```
+
+### 0x03 - Output Status + Input Status as ACK
+Lenght: 32 bytes + 64 bytes (As ACK)  
+Description: Works as [Code 0x01](#0x01---default-input-status) and [Code 0x02](#0x02---default-output-status) combined. Sends status data to the Device and this send it's current status as an ACK.
+
+Structures are the same as [Code 0x01](#0x01---default-input-status) and [Code 0x02](#0x02---default-output-status).
