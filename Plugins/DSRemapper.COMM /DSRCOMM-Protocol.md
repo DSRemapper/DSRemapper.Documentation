@@ -8,10 +8,24 @@ _Note: This protocol is based on how HID (Human Interface Device) communication 
 
 ## Communication structure
 
-```
-[  Code  ] [  Structure  ]
-[ 1 Byte ] [ 32-64 Bytes ]
-```
+In any case, DSRemapper will iniciate or solicitate the communication sending a code. But there is 2 types of communication, DSRemapper sending data to the Device and the Device sending data to DSRemapper
+
+### DSRemapper to Device Data
+|        | Code       | Structure   | ACK    |
+|--------|------------|-------------|--------|
+| Length | 1 Byte     | 32-64 Bytes | 1 Byte |
+| Sender | DSRemapper | DSRemapper  | Device |
+
+### Device to DSRemapper Data
+|        | Code       | Structure   |
+|--------|------------|-------------|
+| Length | 1 Byte     | 32-64 Bytes |
+| Sender | DSRemapper | Device      |
+
+### Parts Description
+- **Code:** Equivalent to the HID report ID. Represented by 1 byte it tells to the device what operation needs to be performed.
+- **Structure:** The data structure that is sended can be 32 or 64 bytes size (this size are defined to provide a default standard).
+- **ACK:** In case of the DSRemapper sending data to the Device, it waits the ACK to prevent overwelming the device with data. In case of Arduino boards the Serial Port generates an interrupt, which can block the microcontroller and preventing it from read all the message from the buffer.
 
 ## Currently Defined Codes
 
@@ -19,119 +33,9 @@ _Note: This protocol is based on how HID (Human Interface Device) communication 
 Length: 32 bytes  
 Description: Contains any information related to the connected device (in case of accelerometer or gyroscope, it's scale)
 
-<table>
-  <thead>
-    <tr>
-      <th>Byte</th>
-      <th>Bit 7</th>
-      <th>Bit 6</th>
-      <th>Bit 5</th>
-      <th>Bit 4</th>
-      <th>Bit 3</th>
-      <th>Bit 2</th>
-      <th>Bit 1</th>
-      <th>Bit 0</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td align=center colspan=8 rowspan=2>Acceleromeeter Scale</td>
-    </tr>
-    <tr>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td align=center colspan=8 rowspan=2>Gyroscope Scale</td>
-    </tr>
-    <tr>
-      <td>3</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td align=center colspan=8 rowspan=28>Empty</td>
-    </tr>
-    <tr>
-      <td>5</td>
-    </tr>
-    <tr>
-      <td>6</td>
-    </tr>
-    <tr>
-      <td>7</td>
-    </tr>
-    <tr>
-      <td>8</td>
-    </tr>
-    <tr>
-      <td>9</td>
-    </tr>
-    <tr>
-      <td>10</td>
-    </tr>
-    <tr>
-      <td>11</td>
-    </tr>
-    <tr>
-      <td>12</td>
-    </tr>
-    <tr>
-      <td>13</td>
-    </tr>
-    <tr>
-      <td>14</td>
-    </tr>
-    <tr>
-      <td>15</td>
-    </tr>
-    <tr>
-      <td>16</td>
-    </tr>
-    <tr>
-      <td>17</td>
-    </tr>
-    <tr>
-      <td>18</td>
-    </tr>
-    <tr>
-      <td>19</td>
-    </tr>
-    <tr>
-      <td>20</td>
-    </tr>
-    <tr>
-      <td>21</td>
-    </tr>
-    <tr>
-      <td>22</td>
-    </tr>
-    <tr>
-      <td>23</td>
-    </tr>
-    <tr>
-      <td>24</td>
-    </tr>
-    <tr>
-      <td>25</td>
-    </tr>
-    <tr>
-      <td>26</td>
-    </tr>
-    <tr>
-      <td>27</td>
-    </tr>
-    <tr>
-      <td>28</td>
-    </tr>
-    <tr>
-      <td>29</td>
-    </tr>
-    <tr>
-      <td>30</td>
-    </tr>
-    <tr>
-      <td>31</td>
-    </tr>
-  </tbody>
-</table>
+```c++
+struct InfoReport{
+  short AccelerometerScale;
+  short GyroscopeScale;
+}
+```
