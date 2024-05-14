@@ -2,7 +2,10 @@
 
 It's based on the Windows COMM Port. Intended for it's use with Arduino Boards to create game controllers in an easy way. It use the [DSRCOMM Protocol](./DSRCOMM-Protocol.md) for the communication.
 
-_Note: for device development consult the DSRCOMM Protocol. In this wiki it's detailed what codes can be sended to the device._
+## Device Development
+- For device development consult the [DSRCOMM Protocol](./DSRCOMM-Protocol.md). In this wiki it's detailed what codes can be sended to the device and how it needs to answer.
+
+- This plugin will ONLY send codes requiered to achive the functionality, some codes defined on the [DSRCOMM Protocol](./DSRCOMM-Protocol.md) will not be used.
 
 ## Considerations
 - On [InfoReport](./DSRCOMM-Protocol.md#0x00---info-report), if `AccelerometerScale` or `GyroscopeScale` is 0, DSRemapper will not process Accelerometer and Gyroscopedata data. It will be available as Axes under Gyro and Accel Properties
