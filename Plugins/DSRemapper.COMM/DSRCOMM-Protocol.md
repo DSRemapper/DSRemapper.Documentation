@@ -31,7 +31,7 @@ In any case, DSRemapper will iniciate or solicitate the communication sending a 
 
 ## Currently Defined Codes
 
-### 0x00 - Info Report
+### 0x00 - Info Report [^1]
 Length: 32 bytes  
 Description: Contains any information related to the connected device (in case of accelerometer or gyroscope, it's scale).
 
@@ -40,11 +40,13 @@ struct InfoReport{
   byte ReportIdCount; // If more than one is specified DSRemapper will spect multiple Input Reports per request
   unsigned short AccelerometerScale;
   unsigned short GyroscopeScale;
+  byte ReportACK : 1; // if 1, then DSRemapper.COMM will use 0x02 Code for data retrive
+  byte reserved : 7;
   byte reserved[27];
 }
 ```
 
-### 0x01 - Default Input Status
+### 0x01 - Default Input Status [^1]
 Length: 64 bytes  
 Description: Contains the data about the Device current status.
 
@@ -65,7 +67,7 @@ struct InputReport{
 }
 ```
 
-### 0x02 - Default Output Status
+### 0x02 - Default Output Status [^1]
 Length: 32 bytes + ACK (1 byte)  
 Description: Contains the data to be send to the Device.
 
@@ -78,8 +80,12 @@ struct OutputReport{
 }
 ```
 
-### 0x03 - Output Status + Input Status as ACK
+### 0x03 - Output Status + Input Status as ACK [^2]
 Lenght: 32 bytes + 64 bytes (As ACK)  
 Description: Works as [Code 0x01](#0x01---default-input-status) and [Code 0x02](#0x02---default-output-status) combined. Sends status data to the Device and this send it's current status as an ACK.
 
 Structures are the same as [Code 0x01](#0x01---default-input-status) and [Code 0x02](#0x02---default-output-status).
+
+
+[^1]: This operation is requested by [DSRemapper.COMM Plugin](./COMM-Plugin.md)
+[^2]: This operation will be requested by [DSRemapper.COMM Plugin](./COMM-Plugin.md) if [ReportACK](#0x00---Info-Report) bit is 1
