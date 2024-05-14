@@ -24,8 +24,10 @@ In any case, DSRemapper will iniciate or solicitate the communication sending a 
 
 ### Parts Description
 - **Code:** Equivalent to the HID report ID. Represented by 1 byte it tells to the device what operation needs to be performed.
+
 - **Structure:** The data structure that is sended can be 32 or 64 bytes size (this size are defined to provide a default standard).
-- **ACK:** In case of the DSRemapper sending data to the Device, it waits the ACK to prevent overwelming the device with data. In case of Arduino boards the Serial Port generates an interrupt, which can block the microcontroller and preventing it from read all the message from the buffer.
+
+- **ACK:** In case of the DSRemapper sending data to the Device, it waits the ACK (or a defined timeout, if the ACK is never received) to prevent overwelming the device with data. In case of Arduino boards the Serial Port generates an interrupt, which can block the microcontroller and preventing it from read all the message from the buffer.
 
 ## Currently Defined Codes
 
@@ -35,8 +37,10 @@ Description: Contains any information related to the connected device (in case o
 
 ```c++
 struct InfoReport{
+  byte ReportIdCount; // If more than one is specified DSRemapper will spect multiple Input Reports per request
   unsigned short AccelerometerScale;
   unsigned short GyroscopeScale;
+  byte reserved[27];
 }
 ```
 
@@ -46,7 +50,18 @@ Description: Contains the data about the Device current status.
 
 ```c++
 struct InputReport{
-  
+  byte Id; // Aditional id to support multiple InputReport for one device
+  short Axes[6];
+  short Pov0;
+  byte Buttons[4];
+  short Accelerometer[3]; // X, Y and Z axes
+  short Gyroscope[3]; // X, Y and Z axes
+  byte Battery;
+  short Sliders[6];
+  short Pov1; // Aditional Pov
+  byte ButtonsExt[4]; // Aditional Buttons
+  short AxesExt[6]; // Aditional Axes
+  byte reserved[2];
 }
 ```
 
@@ -56,7 +71,10 @@ Description: Contains the data to be send to the Device.
 
 ```c++
 struct OutputReport{
-  
+  byte Id; // Aditional id to support multiple InputReport for one device
+  short Axes[6];
+  byte Buttons[4];
+  byte reserved[15];
 }
 ```
 
