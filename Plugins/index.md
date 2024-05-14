@@ -4,6 +4,7 @@
 # Official Plugins
 ## DSRemapper.COMM Plugin
 - [DSRCOMM Protocol](./DSRemapper.COMM/DSRCOMM-Protocol.md)
+- [Documentation](./DSRemapper.COMM/COMM-Plugin.md)
 
 ## DSRemapper.DirectInput Plugin
 - 
