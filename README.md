@@ -5,7 +5,7 @@ This repository contains all documentation for users and developers
 ## Users Documentation
 - [User Documentation Index](./Users/index.md)
 
-## Plugin Development Documentation
+## Plugins Documentation
 - [Plugin Development Index](./Plugins/index.md)
 
 ## DSRemapper Framework Documentation
