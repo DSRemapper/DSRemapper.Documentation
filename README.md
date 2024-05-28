@@ -1,5 +1,7 @@
 # DSRemapper Documentation
 
+_**Currently under work**_
+
 This repository contains all documentation for users and developers.
 
 Additionally, there is a [table](#dsremapper-status) to show the status of the DSRemapper App, Framework, Core and all Plugins developed by me.
@@ -31,7 +33,7 @@ Additionally, there is a [table](#dsremapper-status) to show the status of the D
 | Mouse and Keyboard (Output)       | win_x64                        | Not available  | Beta             |
 
 
-## Repository Description
+## Repository Descriptions
 
 | Repository                        | Description                                                    |
 | --------------------------------- | -------------------------------------------------------------- |
