@@ -4,7 +4,7 @@ This protocol was developed for communication with microcontrollers which suppor
 
 Originally created to be used over the RS-232 Protocol and with Arduino boards, **this protocol can be used on any asyncroneus byte-based communication** (like TCP/IP, for example).
 
-_Note: This protocol is based on how HID (Human Interface Device) communication works. Therefore, it use reports and report IDs/Codes._
+_Note: This protocol is based on how HID (Human Interface Device) and DirectInput communication works. Therefore, it use reports and report IDs/Codes._
 
 ## Communication structure
 
@@ -27,7 +27,12 @@ In any case, DSRemapper will iniciate or solicitate the communication sending a 
 
 - **Structure:** The data structure that is sended can be 32 or 64 bytes size (this size are defined to provide a default standard).
 
-- **ACK:** In case of the DSRemapper sending data to the Device, it waits the ACK (or a defined timeout, if the ACK is never received) to prevent overwelming the device with data. In case of Arduino boards the Serial Port generates an interrupt, which can block the microcontroller and preventing it from read all the message from the buffer.
+- **ACK:** In case of the DSRemapper sending data to the Device, it waits the ACK (or a defined timeout, if the ACK is never received) to prevent overwhelming the device with request ot data. In case of Arduino boards the Serial Port generate interrupts, which can block the microcontroller and prevent it's normal code execution.
+
+### ACK Byte
+The ACK byte needs to be diferent from -1 or 255 (`0xFF` on Hex). The default behaviour of this byte is to unlock DSRemapper from a wait state and complete the comunication with the device. If this byte is not sended DSRemapper will wait for a timeout.
+
+_Note: If the behaviour of this byte is changed, the values will be documented here_
 
 ## Currently Defined Codes
 
@@ -37,10 +42,10 @@ Description: Contains any information related to the connected device (in case o
 
 ```c++
 struct InfoReport{
-  byte ReportIdCount; // If more than one is specified DSRemapper will spect multiple Input Reports per request
+  byte ReportIdCount; // If this value is more than one, DSRemapper will spect multiple Input Reports per request
   unsigned short AccelerometerScale;
   unsigned short GyroscopeScale;
-  byte ReportACK : 1; // if 1, then DSRemapper.COMM will use 0x02 Code for data retrive
+  byte ReportACK : 1; // if 1, then DSRemapper.COMM will use 0x03 Code for data retrive
   byte reserved : 7;
   byte reserved[27];
 }
@@ -88,4 +93,4 @@ Structures are the same as [Code 0x01](#0x01---default-input-status) and [Code 0
 
 
 [^1]: This operation is requested by [DSRemapper.COMM Plugin](./COMM-Plugin.md)
-[^2]: This operation will be requested by [DSRemapper.COMM Plugin](./COMM-Plugin.md) if [ReportACK](#0x00---Info-Report) bit is 1
+[^2]: This operation will be requested by [DSRemapper.COMM Plugin](./COMM-Plugin.md) if [ReportACK](#0x00---info-report) bit is 1
