@@ -18,5 +18,10 @@ It's based on the Windows COMM Port. Intended for it's use with Arduino Boards t
 
 ## [DSRCOMM Protocol](./DSRCOMM-Protocol.md) Used Codes
 This are the codes used by this plugin:
-- [`0x01` code](./DSRCOMM-Protocol.md#0x01---default-input-status-1)
-- [`0x02` code](./DSRCOMM-Protocol.md#0x02---default-output-status-1)
+- [`0x00` code](./DSRCOMM-Protocol.md#0x00---info-report-1) [^1]
+- [`0x01` code](./DSRCOMM-Protocol.md#0x01---default-input-status-1) [^1]
+- [`0x02` code](./DSRCOMM-Protocol.md#0x02---default-output-status-1) [^1]
+- [`0x03` code](./DSRCOMM-Protocol.md#0x03---output-status--input-status-as-ack) [^2]
+
+[^1]: This operation is required by this plugin
+[^2]: This operation will be requested by this plugin if [ACKReport](#0x00---info-report-1) bit is 1
