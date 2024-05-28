@@ -45,7 +45,7 @@ struct InfoReport{
   byte ReportIdCount; // If this value is more than one, DSRemapper will spect multiple Input Reports per request
   unsigned short AccelerometerScale;
   unsigned short GyroscopeScale;
-  byte ReportACK : 1; // if 1, then DSRemapper.COMM will use 0x03 Code for data retrive
+  byte ACKReport : 1; // ACK as Report. If 1, then DSRemapper.COMM will use 0x03 Code for data retrive
   byte reserved : 7;
   byte reserved[27];
 }
@@ -85,12 +85,11 @@ struct OutputReport{
 }
 ```
 
-### 0x03 - Output Status + Input Status as ACK [^2]
+### 0x03 - Output Status + Input Status as ACK
 Lenght: 32 bytes + 64 bytes (As ACK)  
 Description: Works as [Code 0x01](#0x01---default-input-status-1) and [Code 0x02](#0x02---default-output-status-1) combined. Sends status data to the Device and this send it's current status as an ACK.
 
 Structures are the same as [Code 0x01](#0x01---default-input-status-1) and [Code 0x02](#0x02---default-output-status-1).
 
 
-[^1]: This operation is required by [DSRemapper.COMM Plugin](./COMM-Plugin.md)
-[^2]: This operation will be requested by [DSRemapper.COMM Plugin](./COMM-Plugin.md) if [ReportACK](#0x00---info-report-1) bit is 1
+[^1]: This operation is required for this protocol to work
