@@ -87,10 +87,10 @@ struct OutputReport{
 
 ### 0x03 - Output Status + Input Status as ACK [^2]
 Lenght: 32 bytes + 64 bytes (As ACK)  
-Description: Works as [Code 0x01](#0x01---default-input-status) and [Code 0x02](#0x02---default-output-status) combined. Sends status data to the Device and this send it's current status as an ACK.
+Description: Works as [Code 0x01](#0x01---default-input-status-1) and [Code 0x02](#0x02---default-output-status-1) combined. Sends status data to the Device and this send it's current status as an ACK.
 
-Structures are the same as [Code 0x01](#0x01---default-input-status) and [Code 0x02](#0x02---default-output-status).
+Structures are the same as [Code 0x01](#0x01---default-input-status-1) and [Code 0x02](#0x02---default-output-status-1).
 
 
-[^1]: This operation is requested by [DSRemapper.COMM Plugin](./COMM-Plugin.md)
-[^2]: This operation will be requested by [DSRemapper.COMM Plugin](./COMM-Plugin.md) if [ReportACK](#0x00---info-report) bit is 1
+[^1]: This operation is required by [DSRemapper.COMM Plugin](./COMM-Plugin.md)
+[^2]: This operation will be requested by [DSRemapper.COMM Plugin](./COMM-Plugin.md) if [ReportACK](#0x00---info-report-1) bit is 1
