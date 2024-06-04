@@ -36,7 +36,7 @@ Profiles are scripts stored on `[User Documents folder]/DSRemapper/Profiles` fol
 _Note: Only supported file extensions will be showed. Supported extensions depends on loaded Remapper plugins. (for example, if Lua Remapper plugin is loaded, `.lua` files will be showed on the profile list)_
 
 ### Admin privileges
-The program is meant to not require admin privileges _(and I try my best to keep it in that way)_. If this are required for any reason, is at your own risk and you should consider [items on Risks section](#risks-of-admin-privileges).
+The program is meant to not require admin privileges _(and I try my best to keep it in that way)_. If these are required for any reason, is at your own risk and you should consider these [items on Risks section](#risks-of-admin-privileges).
 
 _**Disclaimer:** The DSRemapper is licensed under MIT license, which offers no guaranties or liability. I'm not responsible for what you do with the program or what the program can do if, somehow, malicious code is injected on it.  
 I will try to do my best to prevent this for happening, but I want the program to offer a liberty which comes with this costs._
