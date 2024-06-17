@@ -45,8 +45,10 @@ struct InfoReport{
   byte ReportIdCount; // If this value is more than one, DSRemapper will spect multiple Input Reports per request
   unsigned short AccelerometerScale;
   unsigned short GyroscopeScale;
-  byte ReportACK : 1; // Report as ACK. If 1, then DSRemapper.COMM will use 0x03 Code for data retrive
-  byte reserved : 7;
+  byte ReportACK : 1; // Report as ACK. If set, then DSRemapper will use 0x03 Code for data retrive
+  byte CRC16 : 1; // if set, DSRemapper will expect a CRC16 on the last bytes of the InputReport and the OutputReport. Otherwise, this bytes can be used for data transfer
+  byte CustomName : 1; // if set, DSRemapper will request a custom name with 0x10 code
+  byte reserved : 5;
   byte reserved[27];
 }
 ```
@@ -68,7 +70,7 @@ struct InputReport{
   short Pov1; // Aditional Pov
   byte ButtonsExt[4]; // Aditional Buttons
   short AxesExt[6]; // Aditional Axes
-  byte reserved[2];
+  byte CRC16[2];
 }
 ```
 
@@ -81,7 +83,8 @@ struct OutputReport{
   byte Id; // Aditional id to support multiple InputReport for one device
   short Axes[6];
   byte Buttons[4];
-  byte reserved[15];
+  byte reserved[13];
+  byte CRC16[2];
 }
 ```
 
@@ -91,5 +94,8 @@ Description: Works as [Code 0x01](#0x01---default-input-status-1) and [Code 0x02
 
 Structures are the same as [Code 0x01](#0x01---default-input-status-1) and [Code 0x02](#0x02---default-output-status-1).
 
+### 0x10 - Custom Name
+Length: 0 - 50 bytes + '\0' character
+Description: Sends a custom name from the device to DSRemapper, the response is a null terminated string.
 
 [^1]: This operation needs to be implemented on the COMM device for this protocol to work
