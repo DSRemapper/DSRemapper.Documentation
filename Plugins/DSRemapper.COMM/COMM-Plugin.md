@@ -24,4 +24,4 @@ This are the codes used by this plugin:
 - [`0x03` code](./DSRCOMM-Protocol.md#0x03---output-status--input-status-as-ack) [^2]
 
 [^1]: This operation is required by this plugin
-[^2]: This operation will be requested by this plugin if [ACKReport](#0x00---info-report-1) bit is 1
+[^2]: This operation will be requested by this plugin if [ReportACK](#0x00---info-report-1) bit is 1
