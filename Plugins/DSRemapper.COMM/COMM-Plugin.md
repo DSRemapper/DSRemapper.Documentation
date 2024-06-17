@@ -22,6 +22,8 @@ This are the codes used by this plugin:
 - [`0x01` code](./DSRCOMM-Protocol.md#0x01---default-input-status-1) [^1]
 - [`0x02` code](./DSRCOMM-Protocol.md#0x02---default-output-status-1) [^1]
 - [`0x03` code](./DSRCOMM-Protocol.md#0x03---output-status--input-status-as-ack) [^2]
+- [`0x10` code](./DSRCOMM-Protocol.md#0x10---custom-name) [^3]
 
 [^1]: This operation is required by this plugin
 [^2]: This operation will be requested by this plugin if [ReportACK](#0x00---info-report-1) bit is 1
+[^3]: This operation will be requested by this plugin if [CustomName](#0x00---info-report-1) bit is 1
