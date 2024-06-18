@@ -53,4 +53,4 @@ _Note: If the vulnerability is generated for normal program function I will not 
 
 #### Risks of admin privileges
 - DSRemapper Framework loads plugins written with .NET Framework (C#, Visual Basic, etc.) which can have functions for plugin setup, which executes on plugin load. If this functions have malicious code, these functions will be execute without any warning or confirmation. **(Be sure from where you download the plugins, use only thrusted sources)**
-- Some Remapper plugins can load scripts written with a programming language (Lua, for example) which can execute malicious instructions. **(Try to write the plugins yourself. If you download it from internet verify it before using it)**
+- Some Remapper plugins can load scripts written with a programming language (Lua, for example) which can execute malicious instructions. **(Try to write the scripts yourself. If you download it from internet verify it before using it)**
