@@ -96,6 +96,6 @@ Structures are the same as [Code 0x01](#0x01---default-input-status-1) and [Code
 
 ### 0x10 - Custom Name
 Length: 0 - 50 bytes + '\0' character
-Description: Sends a custom name from the device to DSRemapper, the response is a null terminated string.
+Description: Sends a custom name from the device to DSRemapper, the response is a null terminated ASCII string.
 
 [^1]: This operation needs to be implemented on the COMM device for this protocol to work
