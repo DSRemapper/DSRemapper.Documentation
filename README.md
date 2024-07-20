@@ -6,6 +6,8 @@ This repository contains all documentation for users and developers.
 
 Additionally, there is a [table](#dsremapper-status) to show the status of the DSRemapper App, Framework, Core and all Plugins developed by me.
 
+## [What is DSRemapper?](-/What-is-DSR.md)
+
 ## Users Documentation
 - [User Documentation Index](./Users/index.md)
 
