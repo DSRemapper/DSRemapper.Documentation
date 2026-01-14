@@ -9,14 +9,16 @@ Additionally, there is a [table](#dsremapper-status) to show the status of the D
 ## [What is DSRemapper?](./What-is-DSR.md)
 
 ## Users Documentation
+
 - [User Documentation Index](./Users/index.md)
 
 ## Plugins Documentation
+
 - [Plugin Development Index](./Plugins/index.md)
 
 ## DSRemapper Framework Documentation
-- [DSRemapper Framework Index](./Framework/index.md)
 
+- [DSRemapper Framework Index](./Framework/index.md)
 
 # DSRemapper Repositories Status
 
@@ -33,7 +35,6 @@ Additionally, there is a [table](#dsremapper-status) to show the status of the D
 | ViGEm (Driver deprecated)         | win_x64                        | Not available  | Beta             |
 | VJoy                              | win_X64                        | Not available  | Alpha            |
 | Mouse and Keyboard (Output)       | win_x64                        | Not available  | Beta             |
-
 
 ## Repository Descriptions
 
